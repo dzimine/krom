@@ -1,0 +1,91 @@
+<!DOCTYPE html> 
+<html data-ng-app="App" data-ng-controller="AppCtrl">
+  <head>
+    <title>OpenStack Toolkit</title>
+<!-- TODO: reset.css commented to reduce debugging clutter. Uncomment for production ! -->    
+<!--     <link rel="stylesheet" type="text/css" href="./lib/reset.css" /> -->
+    <link rel="stylesheet" type="text/css" href="./lib/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="./lib/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="./app.css" />
+  </head>
+
+  <body ng-class="{'skip-animations':disabled}" class="ng-cloak">
+    <div id="header">
+      <nav class="app-navigation">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+          <div class="navbar-inner">
+
+              <ol class="nav">
+                <li>
+                  <div class="brand"><i class="icon-cloud"></i></div>
+                </li>
+                <li>
+                  <a href="#/ng-repeat">Search</a>
+                </li>
+                <li class="active">
+                  <a href="#/ng-show-hide" >Usage</a>
+                </li>
+                <li>
+                  <a href="#/ng-switch">VM-Storage</a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                    More
+                    <i class="icon-caret-down"></i>
+                    <ul class="dropdown-menu" role="menu">
+                      <li class=""><a href="#app2"><i class="icon-edit"></i> Edit VM</a></li>
+                      <li class=""><a href="#icons-text-editor"><i class="icon-save"></i> Storage Report</a></li>
+                      <li class=""><a href="#icons-directional"><i class="icon-hand-right"></i> Dashboard</a></li>
+                      <li class="divider"></li>
+                      <li class="nav-header">Even more...</li>
+                      <li class=""><a href="#icons-video-player"><i class="icon-play"></i> Horizon</a></li>
+                      <li class=""><a href="#icons-social"><i class="icon-github"></i> Puppet</a></li>
+                      <li class=""><a href="#icons-medical"><i class="icon-stethoscope"></i> Nagios XI</a></li>
+                    </ul>
+                  </a>
+                </li>
+              </ol>
+
+            <ol class="nav pull-right">
+              <li id="notifications"><a href="#"><span class="badge badge-warning">4</span></a></li>
+              <li class="divider"></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">
+                   dzimine <i class="icon-user"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#"><i class="icon-pencil"></i> Administration</a></li>
+                    <li><a href="#"><i class="icon-cogs"></i> User Settings</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="icon-signout"></i>Logout</a></li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </nav>
+      <div class="container">
+        <div data-ng-view id="ng-view" ng-animate="{enter: 'view-enter'}"></div>
+      </div>
+    </div>
+    <footer id="footer" ng-model="isOpen">
+      <span class="app-loading-container"><span class="app-loading-animation" data-ng-class="status"></span></span>
+      <a href="#"  class="left-link"><span class="icon-paper-clip"></span> Clipboard Tray - drag&drop here</a>
+      <a href="#"  class="right-link" ng-click="isOpen=!isOpen">Events, jobs, tasks &nbsp; 
+        <span ng-class="{false: 'icon-double-angle-up', true: 'icon-double-angle-down'}[isOpen]" ></span></a>
+      <div id="footerContent" ng-show="isOpen === true" ng-animate="{show:'footer-show'}">
+        <div>
+        <table class="table">
+          <tr ng-repeat="r in sysEvents">
+            <td>{{r.type}}</td><td>{{r.target}}</td><td>{{r.message}}</td><td>{{r.time|date:'short'}}</td>
+          </tr>
+        </table>
+        <div>
+      </div>
+    </footer>
+    <script src="./lib/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./lib/angular.min.js"></script> 
+    <script src="./app.js"></script> 
+  <body>
+</html>
